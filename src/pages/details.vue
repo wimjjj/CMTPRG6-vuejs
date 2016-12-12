@@ -2,7 +2,7 @@
     <main-layout>
         <v-link :href=links.edit.href><span class="glyphicon glyphicon-edit"></span> edit</v-link>
         <h1>{{ blog.title }}</h1>
-        <h3>{{ blog.author }}</h3>
+        <h3>written by: {{ blog.author }}</h3>
         <p>{{ blog.body }}</p>
     </main-layout>
 </template>
