@@ -3,16 +3,20 @@ import page from 'page'
 import routes from './routes'
 
 const app = new Vue({
-  el: '#app',
-  data: {
-    ViewComponent: { render: h => h('div', 'loading...') }
-  },
-  render (h) { return h(this.ViewComponent) }
+    el: '#app',
+    data: {
+        ViewComponent: { render: h => h('div', 'loading...') },
+    },
+    render (h) { return h(this.ViewComponent) }
 });
 
 Object.keys(routes).forEach(route => {
-  const Component = require('./pages/' + routes[route] + '.vue')
-  page(route, () => app.ViewComponent = Component)
+    const Component = require('./pages/' + routes[route] + '.vue');
+    page(route, (ctx) => {
+        app.ViewComponent = Component;
+        window.blog_id = ctx.params.id;
+    });
 });
-page('*', () => app.ViewComponent = require('./pages/404.vue'))
+
+page('*', () => app.ViewComponent = require('./pages/404.vue'));
 page();
