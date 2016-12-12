@@ -1,4 +1,6 @@
 export default {
-  '/': 'home',
-  '/:id': 'details'
+    '/': 'home',
+    '/new': 'new',
+    '/:id': 'details',
+    '/:id/edit': 'edit',
 }

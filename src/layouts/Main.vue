@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <v-link id="homelink" href="/"><span class="glyphicon glyphicon-home"></span> Home</v-link>
+        <v-link id="homelink" href="/"><span class="glyphicon glyphicon-home"></span> home</v-link>
 
         <slot></slot>
     </div>

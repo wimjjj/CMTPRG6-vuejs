@@ -1,5 +1,6 @@
 <template>
     <main-layout>
+        <v-link href="/new"><span class="glyphicon glyphicon-plus"></span> new</v-link>
         <div class="list-group">
             <v-link  v-for="blog in blogs" :href=String(blog.id) class="list-group-item">
                 <h1>{{ blog.title }}</h1>
