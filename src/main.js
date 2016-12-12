@@ -1,13 +1,19 @@
 import Vue from 'vue'
 import page from 'page'
 import routes from './routes'
+import VueResource from 'vue-resource'
+
+Vue.use(VueResource);
 
 const app = new Vue({
     el: '#app',
     data: {
         ViewComponent: { render: h => h('div', 'loading...') },
     },
-    render (h) { return h(this.ViewComponent) }
+    render (h) { return h(this.ViewComponent) },
+    http: {
+        root: '/'
+    }
 });
 
 Object.keys(routes).forEach(route => {

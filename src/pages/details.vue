@@ -12,14 +12,15 @@ import MainLayout from '../layouts/Main.vue'
 export default{
     data () {
         return {
-            blog: {
-                id: window.blog_id,
-                title: "Title",
-                author: "me",
-                body: "story"
-            }
+            blog_id: window.blog_id,
+            blog: {}
         }
     },
+    beforeMount () {
+        this.$http.get('http://145.24.222.128/' + this.$data.blog_id).then(function(data){
+            this.$set(this, 'blog', data.body);
+        }.bind(this));
+   },
     components:{
         MainLayout
     }
