@@ -1,19 +1,19 @@
 <template>
     <main-layout>
         <form>
-            <div class="form-group">
+            <div class="form-group" onsubmit="return false">
                 <label for="title">title</label>
-                <input type="text" class="form-control" id="title">
+                <input type="text" class="form-control" id="title" v-model="blog.title">
             </div>
             <div class="form-group">
                 <label for="author">author:</label>
-                <input type="text" class="form-control" id="author">
+                <input type="text" class="form-control" id="author" v-model="blog.author">
             </div>
             <div class="form-group">
                 <label for="body">body:</label>
-                <textarea class="form-control" rows="5" id="body"></textarea>
+                <textarea class="form-control" rows="5" id="body" v-model="blog.body"></textarea>
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="button" class="btn btn-default"  v-on:click="create">Submit</button>
         </form>
     </main-layout>
 </template>
@@ -21,11 +21,34 @@
 <script>
 import MainLayout from '../layouts/Main.vue'
 import VLink from '../components/VLink.vue'
+import page from 'page'
 
 export default{
+    data () {
+        return {
+            blog: {
+                title: '',
+                body: '',
+                author: ''
+            }
+        }
+    },
     components:{
         MainLayout,
         VLink
-    }
+    },
+    methods: {
+        create: function(){
+            this.$http.post('http://145.24.222.128/',
+                {
+                    'title': this.blog.title,
+                    'author': this.blog.author,
+                    'body': this.blog.body
+                }
+            ).then(function(data){
+                page('/' + String(data.body.id));
+            }.bind(this));
+        }
+   }
 }
 </script>
