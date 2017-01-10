@@ -15,8 +15,6 @@
                 <h5>written by: {{ blog.author }}</h5>
             </v-link>
         </div>
-
-
     </main-layout>
 </template>
 
@@ -35,7 +33,6 @@ export default {
         this.$http.get('http://145.24.222.128?limit=5').then(function(data){
             this.$set(this, 'blogs', data.body.items);
             this.$set(this, 'links', data.body.pagination._links);
-            console.log(this.links);
         }.bind(this));
    },
    methods: {
